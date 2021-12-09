@@ -12,7 +12,7 @@ Password for VNC access: **vncpass**
 ```
 sudo -i
 # Openg GL necessary for Virtual GL:
-apt-get install freeglut3-dev mesa-utils
+apt-get install freeglut3-dev mesa-utils libegl1-mesa
 # Install xserver (or reinstall):
 apt-get --reinstall install xserver-xorg-core
 # Extra packages for xserver:
