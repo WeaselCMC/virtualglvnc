@@ -1,7 +1,7 @@
 vgl_version="3.0.1"
 nvidia_version="460.73.01"
 
-apt-get --reinstall install freeglut3-dev mesa-utils libegl1-mesa xserver-xorg-core x11-xserver-utils libxrandr-dev lightdm
+apt-get --reinstall install freeglut3-dev mesa-utils libegl1-mesa xorg xserver-xorg-core x11-xserver-utils libxrandr-dev lightdm 
 
 service lightdm stop
 bash ./NVIDIA-Linux-x86_64-$nvidia_version.run --no-cc-version-check
