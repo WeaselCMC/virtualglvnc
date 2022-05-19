@@ -8,22 +8,7 @@ Password for user: **testpass** \
 Password for VNC access: **vncpass**
 
 ## Configuring server:
-### Install prerequisites:
-```
-sudo -i
-# Openg GL necessary for Virtual GL:
-apt-get install freeglut3-dev mesa-utils libegl1-mesa
-# Install xserver (or reinstall):
-apt-get --reinstall install xserver-xorg-core
-# Extra packages for xserver:
- apt install x11-xserver-utils libxrandr-dev
-# Install lightdm:
-apt-get install lightdm
-# Install nvidia-drivers
-service lightdm stop
-bash ./NVIDIA-Linux-x86_64-460.73.01.run --no-cc-version-check
-```
-
+### Install prerequisites (see install.sh)
 ### Configure Xorg and turn off HardDPMS for nvidia cards:
 Run `nvidia-xconfig --query-gpu-info` to obtain the bus ID of the GPU. Example:
 ```
@@ -36,7 +21,7 @@ Create an appropriate **xorg.conf** file for headless operation:
 ```
 sudo nvidia-xconfig -a --allow-empty-initial-configuration --virtual=1920x1200 --busid {busid}
 ```
-Note: Foe headless server use additional flag: ```--use-display-device=None```
+General note (**NOT FOR VIRTUALGL**): For headless server use additional flag: ```--use-display-device=None``` 
 
 Replace *{busid}* with the bus ID you obtained in Step 1. 
 
@@ -46,25 +31,7 @@ Option "HardDPMS" "false"
 ```
 under the Device or Screen section.
 
-### Install VirtualGL:
-```
-# Login as super user
-sudo -i
-# Stop lightdm service
-service lightdm stop
-# Download VirtualGL:
-wget https://downloads.sourceforge.net/project/virtualgl/2.6.5/virtualgl_2.6.5_amd64.deb
-# Install VirtualGL:
-dpkg -i virtualgl_2.6.5_amd64.deb
-# Turn off nvidia services:
-rmmod nvidia_drm
-rmmod nvidia_modeset
-rmmod nvidia_uvm
-rmmod nvidia
-# Run VirtualGL configuration:
-/opt/VirtualGL/bin/vglserver_config
-# Note: For all questions answer "Yes". 
-```
+### Install VirtualGL (see install.sh)
 
 ### Installing VirtualGL creates new group "vglusers", so to use VirtualGL features we need to assosiate user with this group:
 ```
